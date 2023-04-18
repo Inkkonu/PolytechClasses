@@ -1,0 +1,26 @@
+1. (2^p) - 1
+
+2. Le quicksort et le tri fusion
+
+3. Vrai car toutes les sous branches ont la même profondeur que celles du même niveau.
+
+p = profondeur à partir de ce niveau
+
+
+                                         o  <--- p à gauche = 2, p à droite = 2
+                                        / \
+                                       /   \
+p à gauche = 1, p à droite = 1 ---->  o     o  <--- p à gauche = 1, p à droite = 1
+                                     / \   / \
+p à gauche = 0, p à droite = 0 -->  o   o o   o  <-- p à gauche = 0, p à droite = 0
+
+                                        ^ ^
+                                        | |
+                      ------------------   ---------------------
+                     |                                          |
+       p à gauche = 0, p à droite = 0             p à gauche = 0, p à droite = 0
+
+Cet exemple montre que cet arbre binaire complet est un arbre AVL.
+
+
+4. Le parcours suffixe (on prend à chaque fois l'élément de droite, le parent, l'élément de gauche).

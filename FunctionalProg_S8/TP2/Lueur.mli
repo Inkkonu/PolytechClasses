@@ -1,0 +1,1 @@
+val lueur : couleur -> position -> image

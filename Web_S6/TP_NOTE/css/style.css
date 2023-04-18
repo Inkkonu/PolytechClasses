@@ -1,0 +1,45 @@
+body {
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+}
+
+thead {
+    background-color: dodgerblue;
+    color: white;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: darkgray;
+}
+
+tbody tr:nth-child(even) {
+    background-color: lightskyblue;
+}
+
+tbody th:first-child {
+    text-align: left;
+}
+
+th {
+    width: 200px;
+    padding: 10px 10px 10px 10px;
+}
+
+input[type="button"] {
+    color: white;
+}
+
+input[value="Valider"] {
+    background-color: forestgreen;
+}
+
+input[value="RaZ"] {
+    background-color: darkred;
+}
+
+input[type="number"] {
+    width: 160px;
+}

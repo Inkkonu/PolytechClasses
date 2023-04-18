@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Interface" rel="Chapter" href="Interface.html"><link title="Initialisation " rel="Section" href="#2_Initialisation">
+<link title="Disctinction des joueurs " rel="Section" href="#2_Disctinctiondesjoueurs">
+<link title="Positions écran " rel="Section" href="#2_Positionscran">
+<link title="Sprites" rel="Section" href="#2_Sprites">
+<link title="Affichage " rel="Section" href="#2_Affichage">
+<link title="Actions joueur " rel="Section" href="#2_Actionsjoueur">
+<title>Interface</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Interface.html">Interface</a></h1>
+
+<pre><span id="MODULEInterface"><span class="keyword">module</span> Interface</span>: <code class="code">sig</code> <a href="Interface.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<div class="info-desc">
+<p>Module d'IHM</p>
+</div>
+</div>
+<hr width="100%">
+<h3 id="2_Initialisation">Initialisation </h3>
+<pre><span id="TYPEscreen"><span class="keyword">type</span> <code class="type"></code>screen</span> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>La définition du type <code class="code">screen</code> est volontairement masquée.</p>
+</div>
+</div>
+
+
+<pre><span id="VALinit"><span class="keyword">val</span> init</span> : <code class="type">unit -&gt; <a href="Interface.html#TYPEscreen">screen</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>On doit appeler la fonction d'initialisation <code class="code">init</code> pour obtenir une valeur du type <code class="code">screen</code>.</p>
+</div>
+</div>
+<p><b>Question :</b> D'un point de vue génie logiciel, quelle est l'utilité de forcer l'usage d'un paramètre de type <code class="code">screen</code> dans les fonctions d'affichage ci-dessous ?</p>
+<h3 id="2_Disctinctiondesjoueurs">Disctinction des joueurs </h3>
+<pre><code><span id="TYPEjoueur"><span class="keyword">type</span> <code class="type"></code>joueur</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTjoueur.A"><span class="constructor">A</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTjoueur.B"><span class="constructor">B</span></span></code></td>
+
+</tr></table>
+
+<div class="info ">
+<div class="info-desc">
+<p>Le type <code class="code">joueur</code> sert à distinguer les deux joueurs.</p>
+</div>
+</div>
+
+<h3 id="2_Positionscran">Positions écran </h3><p>Description de l'écran et des positions à l'écran.</p>
+
+<pre><span id="TYPEposition"><span class="keyword">type</span> <code class="type"></code>position</span> = <code class="type">int * int</code> </pre>
+
+
+<pre><span id="VALlargeur_fenetre"><span class="keyword">val</span> largeur_fenetre</span> : <code class="type">int</code></pre>
+<pre><span id="VALhauteur_fenetre"><span class="keyword">val</span> hauteur_fenetre</span> : <code class="type">int</code></pre><h3 id="2_Sprites">Sprites</h3><p>Types de données décrivant les différents sprites.</p>
+
+<pre><code><span id="TYPEennemi"><span class="keyword">type</span> <code class="type"></code>ennemi</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTennemi.Projectile"><span class="constructor">Projectile</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTennemi.Vaisseau"><span class="constructor">Vaisseau</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTennemi.Boss"><span class="constructor">Boss</span></span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEtir"><span class="keyword">type</span> <code class="type"></code>tir</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtir.Balle"><span class="constructor">Balle</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtir.Laser"><span class="constructor">Laser</span></span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="VALget_size_of_ennemi"><span class="keyword">val</span> get_size_of_ennemi</span> : <code class="type"><a href="Interface.html#TYPEennemi">ennemi</a> -&gt; int * int</code></pre>
+<pre><span id="VALget_size_of_tir"><span class="keyword">val</span> get_size_of_tir</span> : <code class="type"><a href="Interface.html#TYPEtir">tir</a> -&gt; int * int</code></pre>
+<pre><span id="VALsize_of_vaisseau"><span class="keyword">val</span> size_of_vaisseau</span> : <code class="type">int * int</code></pre><h3 id="2_Affichage">Affichage </h3><p>Fonctions d'affichage.</p>
+
+<pre><span id="VALaffiche_vaisseau"><span class="keyword">val</span> affiche_vaisseau</span> : <code class="type"><a href="Interface.html#TYPEscreen">screen</a> -&gt; <a href="Interface.html#TYPEjoueur">joueur</a> -&gt; <a href="Interface.html#TYPEposition">position</a> -&gt; unit</code></pre>
+<pre><span id="VALaffiche_ennemi"><span class="keyword">val</span> affiche_ennemi</span> : <code class="type"><a href="Interface.html#TYPEscreen">screen</a> -&gt; <a href="Interface.html#TYPEennemi">ennemi</a> -&gt; <a href="Interface.html#TYPEposition">position</a> -&gt; unit</code></pre>
+<pre><span id="VALaffiche_tir"><span class="keyword">val</span> affiche_tir</span> : <code class="type"><a href="Interface.html#TYPEscreen">screen</a> -&gt; <a href="Interface.html#TYPEtir">tir</a> -&gt; <a href="Interface.html#TYPEposition">position</a> -&gt; unit</code></pre>
+<pre><span id="VALflip"><span class="keyword">val</span> flip</span> : <code class="type"><a href="Interface.html#TYPEscreen">screen</a> -&gt; unit</code></pre><h3 id="2_Actionsjoueur">Actions joueur </h3><p>Actions lues sur le clavier.</p>
+
+<pre><code><span id="TYPEv_direction"><span class="keyword">type</span> <code class="type"></code>v_direction</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTv_direction.Up"><span class="constructor">Up</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTv_direction.Down"><span class="constructor">Down</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEh_direction"><span class="keyword">type</span> <code class="type"></code>h_direction</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTh_direction.Left"><span class="constructor">Left</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTh_direction.Right"><span class="constructor">Right</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPEshoot"><span class="keyword">type</span> <code class="type"></code>shoot</span> = <code class="type">bool</code> </pre>
+
+
+<pre><span id="TYPEcommande_joueur"><span class="keyword">type</span> <code class="type"></code>commande_joueur</span> = <code class="type"><a href="Interface.html#TYPEv_direction">v_direction</a> option * <a href="Interface.html#TYPEh_direction">h_direction</a> option * <a href="Interface.html#TYPEshoot">shoot</a></code> </pre>
+
+
+<pre><code><span id="TYPEcommande_jeu"><span class="keyword">type</span> <code class="type"></code>commande_jeu</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcommande_jeu.QuitCommand"><span class="constructor">QuitCommand</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcommande_jeu.NormalCommand"><span class="constructor">NormalCommand</span></span> <span class="keyword">of</span> <code class="type"><a href="Interface.html#TYPEcommande_joueur">commande_joueur</a> * <a href="Interface.html#TYPEcommande_joueur">commande_joueur</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="VALget_actions"><span class="keyword">val</span> get_actions</span> : <code class="type">unit -&gt; <a href="Interface.html#TYPEcommande_jeu">commande_jeu</a></code></pre><div class="info ">
+<ul class="info-attributes">
+<li><b>Raises</b> <code>Quit</code> lorsque l'utilisateur veut quitter le jeu (touche Echap, ou signal reçu par le processus).</li>
+</ul>
+</div>
+</body></html>

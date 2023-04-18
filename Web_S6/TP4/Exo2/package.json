@@ -1,0 +1,22 @@
+{
+  "name": "tp4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile-node10.js",
+  "scripts": {
+    "test": "gulp",
+    "start": "nodemon --exec node serveur.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-cli": "^2.3.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-watch": "^5.0.1",
+    "map-stream": "0.0.7",
+    "nodemon": "^2.0.3"
+  }
+}

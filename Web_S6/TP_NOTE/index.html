@@ -1,0 +1,54 @@
+<!DOCTYPE html>     <!-- déclaration du doctype HTML5 -->
+<html lang="fr">    <!-- il faut préciser la langue du document html -->
+<head>            <!-- entête: titre, feuilles de style, scripts, etc. -->
+    <meta charset="utf-8">  <!-- encodage des caractères -->
+    <title>Elections</title>    <!-- titre de la page: obligatoire -->
+    <!-- N'oubliez pas de charger votre feuille de style -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- N'oubliez pas de charger votre script JS et
+        ajouter le bon attribut pour l'exécuter quand la page sera prête -->
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+<!-- contenu de la page -->
+<h1>Saisie des votes par lots</h1>
+<form>
+    <table>
+        <thead>
+        <tr>
+            <th>Candidat</th>
+            <th>Nombre de voix</th>
+            <th>Enregistrer</th>
+            <th>Message</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>Prénom Nom 1</th>
+            <th><input type="number" min="-99" max="99" placeholder="Nombre de voix"></th>
+            <th><input type="button" value="RaZ"><input type="button" value="Valider" onclick="validate(event)"></th>
+            <th><input type="text"></th>
+        </tr>
+        <tr>
+            <th>Prénom Nom 2</th>
+            <th><input type="number" min="-99" max="99" placeholder="Nombre de voix"></th>
+            <th><input type="button" value="RaZ"><input type="button" value="Valider" onclick="validate(event)"></th>
+            <th><input type="text"></th>
+        </tr>
+        <tr>
+            <th>Blancs</th>
+            <th><input type="number" min="-99" max="99" placeholder="Nombre de voix"></th>
+            <th><input type="button" value="RaZ"><input type="button" value="Valider" onclick="validate(event)"></th>
+            <th><input type="text"></th>
+        </tr>
+        <tr>
+            <th>Nuls</th>
+            <th><input type="number" min="-99" max="99" placeholder="Nombre de voix"></th>
+            <th><input type="button" value="RaZ"><input type="button" value="Valider" onclick="validate(event)"></th>
+            <th><input type="text"></th>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

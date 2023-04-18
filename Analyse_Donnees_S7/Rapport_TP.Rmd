@@ -1,0 +1,171 @@
+---
+title: "Analyse de données - Rapport"
+author: "Killian Blain"
+date: "2022-12-14"
+output: html_document
+---
+
+## Analyse en composantes principales
+
+# 1.
+
+```{r}
+d <- read.table("Eaux.data", header = TRUE)
+d
+```
+
+# 2.
+
+```{r}
+boxplot(d$Bicarbonates)
+```
+
+On remarque une concentration autour d'environ 300 mais il y a également quelques valeurs extrêmes allant jusqu'à plus de 4000.
+
+
+```{r}
+boxplot(d$Sulfates)
+```
+
+On observe encore une fois une concentration de valeurs autour de 50 avec quelques valeurs extrêmes.
+
+
+```{r}
+boxplot(d$Chlorures)
+```
+
+Cette fois-ci, on a moins de variables extrêmes et des valeurs groupées autour de 25.
+
+
+```{r}
+boxplot(d$Calcium)
+```
+
+On a ici des valeurs autour de 100 et presque aucune valeur extrême.
+
+
+```{r}
+boxplot(d$Magnesium)
+```
+
+On a des valeurs centrées autour de 20 et quelques valeurs extrêmes.
+
+
+```{r}
+boxplot(d$Sodium)
+```
+
+Le graphe est dur à lire, on a l'air d'avoir majoritairement des petites valeurs (en dessous de 50) mais plusieurs valeurs très extrêmes sont présentes (plus de 1000).
+
+
+# 3.
+
+```{r}
+cov(d[,-c(1,2)])
+```
+
+Sans grande surprise, les valeurs sur lesquelles on a remarqué des valeurs extrêmes possèdent des variances très élevées.
+
+# 4.
+
+```{r}
+cor(d[,-c(1,2)])
+```
+
+Il semble exister une corrélation entre : 
+- Bicarbonates et sodium
+- Bicarbonates et chlorures
+- Sulfates et calcium
+- Chlorures et sodium
+- Calcium et magnesium
+- et peut-être magnesium et sulfates
+
+# 5.
+
+```{r}
+pr <- prcomp(d[,-c(1,2)], center = TRUE, scale. = TRUE)
+pr
+summary(pr)
+```
+Il semble qu'il y ait deux composantes principales qui nous permettent de récupérer 90% de l'information.
+Le paramètre center permet de décaler les valeurs afin que leurs moyennes soient 0.
+Le paramètre scale permet de diviser toutes les valeurs par l'écart-type afin d'avoir des valeurs sur une plus petit échelle.
+
+
+# 6.
+
+```{r}
+pca <- prcomp(d[,-c(1,2)], center = TRUE, scale. = TRUE)
+
+df <- scale(d[,-c(1,2)], pca$center, pca$scale) %*% pca$rotation 
+plot(df)
+text(df, label=d$Nom)
+```
+Les eaux qui sortent du lot sont Hepar, Contrex, Arvie, Vichy Celestin et Vichy St-Yorre.
+On pourrait aussi dire que Sanpellegrino, Vittel, Ondine, Verniere, Badoit et Salveta sortent du lot.
+
+# 7.
+
+```{r}
+barplot(pr$sdev ^ 2, names.arg = c('PC1', 'PC2', 'PC3', 'PC4', 'PC5', 'PC6'))
+par(new = TRUE)
+s = cumsum((pr$sdev ^ 2) * 100 / sum(pr$sdev ^ 2))
+plot(s, type = 'b', axes = FALSE)
+axis(4, col = 'red')
+```
+On retient deux composantes car elles représentent environ 90% de l'information.
+
+# 8.
+
+```{r}
+biplot(pr)
+```
+Le magnésium, les sulfates et le calcium semblent être corrélés entre eux, tout comme le bicarbonatem, le sodium et le chlorures.
+
+# 9.
+
+```{r}
+biplot(pr, choices = 2:3)
+```
+On perd toute corrélation en choisissant les composantes principales 2 et 3.
+
+```{r}
+biplot(pr, choices = c(1,3))
+```
+
+Même réponse en prenant les composantes principales 1 et 3.
+
+# 10.
+
+```{r}
+square <- pr$rotation ^ 2
+rowSums(square)
+quality <- rowSums(square[,1:2])
+quality
+```
+
+Aucune variable n'a l'air mieux represéntée qu'une autre sur le premier plan factoriel, les valeurs sont environ toutes les mêmes.
+
+##Partitionnement
+
+# 1.
+
+```{r}
+d <- read.table("temperatures.csv", header=TRUE, sep = ";", row.names = 1)
+d
+
+distances <- dist(d[1:12])
+
+```
+
+# 2.
+
+```{r}
+cluster <- hclust(distances)
+plot(cluster, main = "Cluster Dendrogram")
+(dendrogram <- as.dendrogram(cluster))
+(cuted <- cut(dendrogram, 21))
+```
+
+La hauteur représente la différence de températures entre les groupes.
+On peut couper à la hauteur 21 pour former quatre groupes différents.

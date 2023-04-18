@@ -1,0 +1,32 @@
+------------------------------------------------------------------------------------------------
+Question 1 : Comment défini-t-on une interface en C++ ? Donner un exemple.
+-----------
+
+En déclarant les fonctions avec virtual et =0
+
+------------------------------------------------------------------------------------------------
+Question 2 :  Expliquer le fonctionnement des captures sur une fonction lambda et donner un exemple.
+-----------
+
+Sur une fonction lambda, les captures permettent d'indiquer comment sont passées les variables, par référence ou par valeur.
+
+
+------------------------------------------------------------------------------------------------
+Question 3 : Qu'est-ce qu'un foncteur en C++ ? Donner un exemple simple.
+-----------
+
+Un foncteur est une classe surchargeant l'opérateur ().
+
+------------------------------------------------------------------------------------------------
+Question 4 : Citer 3 conteneur séquentiel existant dans la librairie standard du C++ et indiquer pour chacun d'eux sa structure algorithmique.
+-----------
+
+vector, list et deque sont des conteneurs séquentiels
+
+
+------------------------------------------------------------------------------------------------
+Question 5 :  Expliquer pourquoi il est nécessaire de redéfinir l'opérateur de sérialisation (<< sur un objet std::ostream) en tant que fonction externe.
+-----------
+
+Il faut le redéfinir en fonction externe sinon on devrait écrire les opérations dans l'autre sens.
+Exemple : std::cout << i << j; deviendrait j << i << std::cout;

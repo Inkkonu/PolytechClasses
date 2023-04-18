@@ -1,0 +1,49 @@
+1) Mutabilité dans Java
+
+Q1)
+
+1. String n'est pas mutable alors que StringBuffer et StringBuilder le sont.
+StringBuffer est plus sécurisé que StringBuilder, il est donc aussi plus lent.
+
+2. Les trois héritent de la classe Object et implémentent les interfaces Serializable et CharSequence.
+
+3. Peut pas répondre
+
+4. String nom; //Pas modifiable
+
+StringBuilder nom; //Modifiable
+
+final String nom; //Pas modifiable
+
+final StringBuilder nom; //Modifiable
+
+5. On peut utiliser la méthode toString sur le StringBuilder puis comparer deux String normalement.
+
+Q2) ça marche (voir code de TestString.java)
+
+Q3) Cela n'est pas possible
+
+Q4) Cela donne l'erreur : Unhandled exception: java.lang.CloneNotSupportedException
+
+Q5) Après avoir implémenté l'interface Cloneable, on voit que cela marche et le nouvel objet est du bon type.
+
+Q6) Je ne vois pas pourquoi tricher vu que ça marche ? Mais de toute façon, on peut pas redéfinir getClass() car elle est final.
+
+Q7) Oui.
+
+Q8) On peut redéfinir la méthode clone() qui renverra simplement l'instance du singleton ou lever une erreur.
+
+2) Fonctionnement du Garbage Collector en Java
+
+Q9) Voir code de ClassToClone.java
+
+Q10) Le garbage collector ne se déclenche pas
+
+Q11)
+- Non car la stack fonctionne sur le principe du Last In First Out
+- Oui 
+- Non
+- Oui
+- 
+
+Q12) Le garbage collector dépend de chaque JVM car chaque JVM peut avoir sa propre implémentation du garbage collector du moment que cela respecte les conventions.
