@@ -1,13 +1,11 @@
-Point = tuple[int, int]  # alias de type
-
+Point = tuple[int, int]
 Polynome = list[Point]
 
 
 def intersect(O: Point, A: Point, B: Point) -> bool:
     (xO, yO), (xA, yA), (xB, yB) = O, A, B
     return (
-            (yO <= yA) == (yO > yB) and  # ordonnée dans l'intervalle
-            xO < (xB - xA) * (yO - yA) / (yB - yA) + xA  # point du bon côté
+            (yO <= yA) == (yO > yB) and xO < (xB - xA) * (yO - yA) / (yB - yA) + xA
     )
 
 

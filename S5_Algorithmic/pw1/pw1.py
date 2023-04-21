@@ -1,67 +1,60 @@
 from math import pi, sqrt
 from random import randint
 import re
+import typing
 import matplotlib.pyplot as plt
 
 
-# Exo 3
-def exo_3() -> None:
-    s: str = 'Bonjour'
+# Ex 3
+def ex_3() -> None:
+    s: str = 'Hello'
     t: str = ''
-    if s == 'Bonjour':
+    if s == 'Hello':
         t = '0o7'
         s += t
     else:
         s += ' World!'
     print(s)
 
-    print(f'Dissection de la chaîne de caractères {s!r} :')
+    print(f'String dissection {s!r} :')
     for i in range(len(s)):
         print(i, s[i])
 
 
-# Exo 4
-def exo_4() -> None:
-    # suite de Collatz
+# Ex 4
+def ex_4() -> None:
+    #Collatz conjecture
     u: int = 27
     while u > 1:
-        if u % 2:  # si u est impair
-            u = 3 * u + 1  # alors u est multiplié par 3, +1
-        else:  # si u est pair:
-            u //= 2  # alors u est divisée par 2
-    print('La conjecture de Syracuse est vérifiée!')
+        if u % 2:
+            u = 3 * u + 1
+        else:
+            u //= 2
+    print('The Collatz conjecture is verified')
 
 
-# Exo 5
-def somme(n: int) -> int:
+# Ex 5
+def sum(n: int) -> int:
     return n * (n + 1) // 2
 
 
-def moyenne(a: int, b: int) -> float:
-    return (a + b) / 2
-
-
-def poly(x: float) -> float:
-    return 2 * x ** 2 - x + 1
-
-
-def est_divisible_par(n: int, k: int) -> bool:
+def is_divisible_by(n: int, k: int) -> bool:
     return n % k == 0
 
 
-def est_pair(n: int) -> bool:
-    return est_divisible_par(n, 2)
+def is_odd(n: int) -> bool:
+    return is_divisible_by(n, 2)
 
 
-def est_compris_dans(a: int, b: int, c: int) -> bool:
+def is_between(a: int, b: int, c: int) -> bool:
     if b > c:
-        return est_compris_dans(a, c, b)
+        return is_between(a, c, b)
     else:
         return b <= a <= c
 
 
-# Exo 6
-def saisir_entier(invite: str = 'Saisir un nombre entier :',
+# Ex 6
+def type_integer(invite: str = 'Type an integer :',
                   escape: str = '') -> int:
     try:
         print(invite)
@@ -70,14 +63,14 @@ def saisir_entier(invite: str = 'Saisir un nombre entier :',
             return
         return int(s)
     except ValueError:
-        print("Rentre un entier nigaud!")
-        return saisir_entier()
+        print("Type an integer dumbass!")
+        return type_integer()
 
 
-# Exo 7
-def exo_7() -> None:
+# Ex 7
+def ex_7() -> None:
     data: str
-    with open('data_inventaire_prevert.txt', 'r') as infile:
+    with open('pw1/data_inventaire_prevert.txt', 'r') as infile:
         data = infile.read().replace(';', '\n')
 
     i = 1
@@ -89,81 +82,81 @@ def exo_7() -> None:
             output += f'{i:02d}. {line}\n'
             i += 1
 
-    with open('inventaire_prevert.txt', 'w') as outfile:
+    with open('pw1/inventaire_prevert.txt', 'w') as outfile:
         outfile.write(output)
 
 
-# Exo 8
-def exo_8() -> None:
-    n: int = saisir_entier()
-    if not est_pair(n):
+# Ex 8
+def ex_8() -> None:
+    n: int = type_integer()
+    if not is_odd(n):
         n += 1
-    print(f'Somme de 0 à {n} = {somme(n)}')
+    print(f'Sum from 0 to {n} = {sum(n)}')
 
 
-# Exo 9
-def calcul_perimetre_disque(r: float) -> float:
+# Ex 9
+def disk_perimeter(r: float) -> float:
     return 2 * pi * r
 
 
-def calcul_surface_disque(r: float) -> float:
+def disk_surface(r: float) -> float:
     return pi * r ** 2
 
 
-def calcul_surface_cylindre(r: float) -> float:
-    return calcul_surface_disque(r) * 2
+def cylinder_surface(r: float) -> float:
+    return disk_surface(r) * 2
 
 
-def calcul_volume_cylindre(r: float, h: float) -> float:
-    return calcul_surface_disque(r) * h
+def cylinder_volume(r: float, h: float) -> float:
+    return disk_surface(r) * h
 
 
-# Exo 10
-def eqn_second_degre(a: float, b: float, c: float) -> None:
-    d = calcul_determinant(a, b, c)
+# Ex 10
+def quadratic_equation(a: float, b: float, c: float) -> None:
+    d = compute_discriminant(a, b, c)
     if d < 0:
-        print(f'Δ = {d:0.2f}\nPas de solutions réelles, flemme de m\'embêter avec ça :)')
+        print(f'Δ = {d:0.2f}\nNo real solution')
     elif d == 0:
         x = (-b) / (2 * a)
-        print(f'Δ = {d:0.2f}\nUne racine double : {x:0.2f}')
+        print(f'Δ = {d:0.2f}\nOne solution : {x:0.2f}')
     else:
         x1 = (-b + sqrt(d)) / (2 * a)
         x2 = (-b - sqrt(d)) / (2 * a)
-        print(f'Δ = {d:0.2f}\nDeux racines : {x1:0.2f} et {x2:0.2f}')
+        print(f'Δ = {d:0.2f}\nTwo solutions : {x1:0.2f} et {x2:0.2f}')
 
 
-def calcul_determinant(a: float, b: float, c: float) -> float:
+def compute_discriminant(a: float, b: float, c: float) -> float:
     return b ** 2 - 4 * a * c
 
 
-# Exo 11
-def exo_11() -> None:
+# Ex 11
+def play() -> None:
     i = 1
-    n = randint(0, 100)
+    n = randint(0,100)
     found = False
     while not found:
-        print("Trouve le nombre entre 0 et 100")
-        r = saisir_entier()
+        print("Find the number between 0 and 100")
+        r = type_integer()
         if r == n:
-            print(f'Bravo, vous avez trouvé le résultat en {i} essais!')
+            print(f'Congrats, you found the number in {i} tries!')
             found = True
         elif r < n:
-            print('C\'est plus!')
+            print('It\'s more')
             i += 1
         else:
-            print('C\'est moins!')
+            print('It\'s less')
             i += 1
 
 
-# Exo 12
-def exo_12() -> None:
+# Ex 12
+def guess() -> None:
     print('Pick a number between 1 and 100 and write it down (but don\'t tell me :p )')
-    r = saisir_entier()
+    r = type_integer()
     found = False
     i = 1
     min, max = 1, 100
     while not found:
-        x = int(moyenne(min, max))
+        x = int((min + max)/2)
         print(f'Is the answer {x} ?')
         print('Type + if it\'s more, type - if it\'s less, type C if it\'s correct :)')
         s = input()
@@ -180,9 +173,9 @@ def exo_12() -> None:
         i += 1
 
 
-# Exo 13
-def calcul_agregats() -> None:
-    x = saisir_entier()
+# Ex 13
+def compute_aggregates() -> None:
+    x = type_integer()
     i = 1
     min, max = x, x
     sum = x
@@ -191,7 +184,7 @@ def calcul_agregats() -> None:
     print(f'Minimum number typed : {min}')
     print(f'Maximum number typed : {max}')
     print(f'Average of all the numbers typed : {average}')
-    x = saisir_entier()
+    x = type_integer()
     while x is not None:
         i += 1
         if x < min:
@@ -203,10 +196,10 @@ def calcul_agregats() -> None:
         print(f'Minimum number typed : {min}')
         print(f'Maximum number typed : {max}')
         print(f'Average of all the numbers typed : {average}')
-        x = saisir_entier()
+        x = type_integer()
 
 
-# Exo 14
+# Ex 14
 Point = tuple[int, int]  # alias de type
 
 Polynome = list[Point]
@@ -215,8 +208,7 @@ Polynome = list[Point]
 def intersect(O: Point, A: Point, B: Point) -> bool:
     (xO, yO), (xA, yA), (xB, yB) = O, A, B
     return (
-            (yO <= yA) == (yO > yB) and  # ordonnée dans l'intervalle
-            xO < (xB - xA) * (yO - yA) / (yB - yA) + xA  # point du bon côté
+            (yO <= yA) == (yO > yB) and xO < (xB - xA) * (yO - yA) / (yB - yA) + xA
     )
 
 
@@ -230,7 +222,7 @@ def is_inside_polynome(O: Point, P: Polynome) -> bool:
     return True
 
 
-# Exo 15
+# Ex 15
 def analyse(filename) -> dict:
     d = dict()
     with open(filename, 'r') as infile:
@@ -279,46 +271,47 @@ def get_greatest_gaps(d1: dict, d2: dict) -> list:
     return l[:10]
 
 
-# Exo 16
-def organiser(n: int) -> None:
-    equipes = [i for i in range(1, n + 1)]
+# Ex 16
+def organise(n: int) -> None:
+    teams = [i for i in range(1,n+1)]
     pivot_switched_last_match = True
-    if n % 2 != 0:
-        equipes.insert(0, 0)  # 0 = équipe fictive
-    l1, l2 = equipes[:len(equipes) // 2], equipes[len(equipes) // 2:]
+    if n%2 != 0:
+        teams.insert(0,0) # 0 = fictitious time
+    l1, l2 = teams[:len(teams)//2], teams[len(teams)//2:]
     for i in range(n):
-        print(f'Jour n°{i + 1}:')
+        print(f'Day {i+1}:')
         for j in range(len(l1)):
             if l1[j] == 0:
-                print(f'{l2[j]} au repos')
+                print(f'{l2[j]} resting')
             elif l2[j] == 0:
-                print(f'{l1[j]} au repos')
+                print(f'{l1[j]} resting')
             else:
                 if not pivot_switched_last_match and (l1[j] == n or l2[j] == n):
-                    print(f'{l2[j]} reçoit {l1[j]}')
+                    print(f'{l2[j]} plays against {l1[j]}')
                     pivot_switched_last_match = True
                 else:
                     if l1[j] == n or l2[j] == n:
                         pivot_switched_last_match = False
-                    print(f'{l1[j]} reçoit {l2[j]}')
+                    print(f'{l1[j]} plays against {l2[j]}')
         t = pivot(l1, l2, n)
         l1, l2 = t[0], t[1]
 
 
-def pivot(l1: list, l2: list, n: int) -> (list, list):
-    l1.insert(0, l2[0])
+def pivot(l1: list, l2: list, n: int) -> typing.Tuple[list, list]:
+    l1.insert(0,l2[0])
     del l2[0]
-    l2.insert(len(l2) - 1, l1[-1])
+    l2.insert(len(l2)-1,l1[-1])
     del l1[-1]
     return (l1, l2)
 
 
-# Exo 17
-def calculatrice() -> int:
-    print('Saisir une opération à effectuer')
+
+# Ex 17
+def calculator() -> int:
+    print('Type an operation (must end with an equal)')
     s = input()
-    if re.match('[ ]*[0-9]{1,}[ ]*([+\-*%]{1}|[/]{2})[ ]*[0-9]{1,}[ ]*[=]{1}', s):
-        l = re.split('([+\-*%/=])', s)
+    if re.match('[ ]*[0-9]{1,}[ ]*([+\-*%]{1}|[/]{2})[ ]*[0-9]{1,}[ ]*[=]{1}',s) :
+        l = re.split('([+\-*%/=])',s)
         if l[1] == '/':
             x, y, o = int(l[0]), int(l[4]), '//'
         else:
@@ -328,13 +321,13 @@ def calculatrice() -> int:
         elif o == '-':
             return x - y
         elif o == '*':
-            return x * y
+            return x*y
         elif o == '%':
-            return x % y
+            return x%y
         elif o == '//':
-            return x // y
+            return x//y
         else:
             print("Oops, something weird happened :(")
 
     else:
-        print('Oops, opération non acceptée')
+        print('Oops, operation not accepted')

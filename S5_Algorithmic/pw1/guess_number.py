@@ -1,35 +1,35 @@
 from random import randint
 
-from tp1.moyenne import moyenne
-from tp1.util import saisir_entier
+from average import average
+from util import type_integer
 
 
-def jouer() -> None:
+def play() -> None:
     i = 1
     n = randint(0,100)
     found = False
     while not found:
-        print("Trouve le nombre entre 0 et 100")
-        r = saisir_entier()
+        print("Find the number between 0 and 100")
+        r = type_integer()
         if r == n:
-            print(f'Bravo, vous avez trouvé le résultat en {i} essais!')
+            print(f'Congrats, you found the number in {i} tries!')
             found = True
         elif r < n:
-            print('C\'est plus!')
+            print('It\'s more')
             i += 1
         else:
-            print('C\'est moins!')
+            print('It\'s less')
             i += 1
 
 
 def guess() -> None:
     print('Pick a number between 1 and 100 and write it down (but don\'t tell me :p )')
-    r = saisir_entier()
+    r = type_integer()
     found = False
     i = 1
     min, max = 1, 100
     while not found:
-        x = int(moyenne(min, max))
+        x = int((min + max)/2)
         print(f'Is the answer {x} ?')
         print('Type + if it\'s more, type - if it\'s less, type C if it\'s correct :)')
         s = input()

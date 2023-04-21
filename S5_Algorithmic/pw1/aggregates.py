@@ -1,8 +1,8 @@
-from tp1.util import saisir_entier
+from util import type_integer
 
 
-def calcul_agregats() -> None:
-    x = saisir_entier()
+def compute_aggregates() -> None:
+    x = type_integer()
     i = 1
     min, max = x, x
     sum = x
@@ -11,7 +11,7 @@ def calcul_agregats() -> None:
     print(f'Minimum number typed : {min}')
     print(f'Maximum number typed : {max}')
     print(f'Average of all the numbers typed : {average}')
-    x = saisir_entier()
+    x = type_integer()
     while x is not None:
         i += 1
         if x < min:
@@ -23,8 +23,8 @@ def calcul_agregats() -> None:
         print(f'Minimum number typed : {min}')
         print(f'Maximum number typed : {max}')
         print(f'Average of all the numbers typed : {average}')
-        x = saisir_entier()
+        x = type_integer()
 
 
 if __name__ == '__main__':
-    calcul_agregats()
+    compute_aggregates()

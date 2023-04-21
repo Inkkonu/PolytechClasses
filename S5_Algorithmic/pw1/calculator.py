@@ -1,7 +1,7 @@
 import re
 
-def calculatrice() -> int:
-    print('Saisir une opération à effectuer')
+def calculator() -> int:
+    print('Type an operation (must end with an equal)')
     s = input()
     if re.match('[ ]*[0-9]{1,}[ ]*([+\-*%]{1}|[/]{2})[ ]*[0-9]{1,}[ ]*[=]{1}',s) :
         l = re.split('([+\-*%/=])',s)
@@ -23,8 +23,8 @@ def calculatrice() -> int:
             print("Oops, something weird happened :(")
 
     else:
-        print('Oops, opération non acceptée')
+        print('Oops, operation not accepted')
 
 
 if __name__ == '__main__':
-    print(calculatrice())
+    print(calculator())

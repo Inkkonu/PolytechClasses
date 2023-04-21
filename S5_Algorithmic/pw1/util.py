@@ -1,4 +1,4 @@
-def saisir_entier(invite: str = 'Saisir un nombre entier :',
+def type_integer(invite: str = 'Type an integer :',
                   escape: str = '') -> int:
     try:
         print(invite)
@@ -7,9 +7,9 @@ def saisir_entier(invite: str = 'Saisir un nombre entier :',
             return
         return int(s)
     except ValueError:
-        print("Rentre un entier nigaud!")
-        return saisir_entier()
+        print("Type an integer dumbass!")
+        return type_integer()
 
 
 if __name__ == '__main__':
-    print(saisir_entier())
+    print(type_integer())
