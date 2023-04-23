@@ -1,15 +1,14 @@
 from __future__ import annotations
-from tp4.cell import Cell
+from cell import Cell
 
 
 class LinkedList:
-
     def __init__(self):
-        sentinelle = Cell(None, None, None)
-        sentinelle.next = sentinelle
-        sentinelle.prev = sentinelle
+        sentinel = Cell(None, None, None)
+        sentinel.next = sentinel
+        sentinel.prev = sentinel
         self.size = 0
-        self.sentinelle = sentinelle
+        self.sentinel = sentinel
 
     def is_empty(self):
         return self.size == 0
@@ -20,23 +19,23 @@ class LinkedList:
     def head(self):
         if self.is_empty():
             return None
-        return self.sentinelle.next
+        return self.sentinel.next
 
     def tail(self):
         if self.is_empty():
             return None
-        return self.sentinelle.prev
+        return self.sentinel.prev
 
     def __str__(self):
-        s = ''
-        c = self.sentinelle
+        s = ""
+        c = self.sentinel
         for i in range(len(self)):
             c = c.next
-            s += str(c.value) + '⥂'
+            s += str(c.value) + "⥂"
         return s[:-1]
 
     def lookup(self, item: int):
-        c = self.sentinelle
+        c = self.sentinel
         for i in range(len(self)):
             c = c.next
             if c.value == item:
@@ -45,42 +44,42 @@ class LinkedList:
 
     def cell_at(self, index: int):
         if index >= len(self):
-            raise IndexError('Error, index is too big')
-        c = self.sentinelle
+            raise IndexError("Error, index is too big")
+        c = self.sentinel
         for i in range(index + 1):
             c = c.next
         return c
 
     def get(self, idx: Cell):
-        c = self.sentinelle
+        c = self.sentinel
         while c.next != idx:
             c = c.next
-            if c == self.sentinelle:
-                raise IndexError('Cell not in the list')
+            if c == self.sentinel:
+                raise IndexError("Cell not in the list")
         return c.next.value
 
     def set(self, idx: Cell, item: int):
-        c = self.sentinelle
+        c = self.sentinel
         while c.next != idx:
             c = c.next
-            if c == self.sentinelle:
-                raise IndexError('Cell not in the list')
+            if c == self.sentinel:
+                raise IndexError("Cell not in the list")
         c.next.value = item
         return self
 
     def insert(self, item: int, neighbor: Cell, after: bool = True):
-        c = self.sentinelle
+        c = self.sentinel
         while c.next != neighbor:
             c = c.next
-            if c == self.sentinelle:
-                raise IndexError('Cell not in the list')
-        # On est arrivé à la case juste avant le neighbor
+            if c == self.sentinel:
+                raise IndexError("Cell not in the list")
+        # Arrived to the cell before the neighbor
         if not after:
             new = Cell(item, neighbor, c)
             c.next = new
             new.next.prev = new
         else:
-            c = c.next.next  # On va à la case juste après le neighbor
+            c = c.next.next  # Go to the cell after the neighbor
             new = Cell(item, c, neighbor)
             c.prev = new
             new.prev.next = new
@@ -88,17 +87,17 @@ class LinkedList:
         return self
 
     def append(self, item: int):
-        return self.insert(item, self.sentinelle.prev)
+        return self.insert(item, self.sentinel.prev)
 
     def prepend(self, item: int):
-        return self.insert(item, self.sentinelle.next, False)
+        return self.insert(item, self.sentinel.next, False)
 
     def remove(self, cell: Cell):
-        c = self.sentinelle
+        c = self.sentinel
         while c.next != cell:
             c = c.next
-            if c == self.sentinelle:
-                raise IndexError('Cell not in the list')
+            if c == self.sentinel:
+                raise IndexError("Cell not in the list")
         c.next = c.next.next
         c.next.prev = c
         self.size -= 1
@@ -109,18 +108,22 @@ class LinkedList:
             if self.is_empty():
                 self = l
             else:
-                c = self.tail()     # On prend la dernière cellule de l1
-                c.next = l.head()   # Sa cellule suivante est la première de l2
-                l.head().prev = c   # La valeur précédente de la première cellule de l2 est maintenant la dernière de l1
+                c = self.tail()  # Take last cell of l1
+                c.next = l.head()  # Its last cell is the first of l2
+                l.head().prev = c  # The previous value of the first cell of l2 is now the last of l1
 
-                l.tail().next = self.sentinelle     # La cellule après la dernière de l2 est maintenant la sentinelle de l1
-                self.sentinelle.prev = l.tail()     # La cellule avant la sentinelle de l1 est maintenant la dernière de l2
-                self.size += len(l)                 # On change la taille et hop, c'tout bon :)
+                l.tail().next = (
+                    self.sentinel
+                )  # The next value of the last cell of l2 is now the sentinel of l1
+                self.sentinel.prev = (
+                    l.tail()
+                )  # The previous value of the sentinel of l1 is now the last cell of l2
+                self.size += len(l)  # Change the size and it's all good :)
         return self
 
     def reverse(self, k: int):
         if k > len(self) or k <= 0:
-            raise IndexError('Index error')
+            raise IndexError("Index error")
 
         for i in range(k // 2):
             self.swap(i, k - i - 1)
@@ -142,8 +145,7 @@ class LinkedList:
         c1 = self.cell_at(i)
         c2 = self.cell_at(j)
 
-        if i + 1 != j:  # Si i et j ne sont pas côte à côte
-
+        if i + 1 != j:  # If i and j are not consecutive
             c1.next, c1.prev, c2.next, c2.prev = c2.next, c2.prev, c1.next, c1.prev
 
             before_c1.next = c2
@@ -153,7 +155,6 @@ class LinkedList:
             after_c2.prev = c1
 
         else:
-
             c1.next, c1.prev, c2.next, c2.prev = c2.next, c2, c1, c1.prev
 
             before_c1.next = c2
@@ -163,7 +164,7 @@ class LinkedList:
         return self
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     l = LinkedList()
     l.append(4)
     l.append(5)

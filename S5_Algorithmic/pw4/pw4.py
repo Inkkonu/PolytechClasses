@@ -5,6 +5,7 @@ from typing import Optional, Iterator
 
 # Exo 1
 
+
 @dataclass
 class LinkedList:
     size: int
@@ -46,11 +47,11 @@ def ll_tail(l: LinkedList) -> Optional[Cell]:
 
 
 def ll_str(l: LinkedList) -> str:
-    s = ''
+    s = ""
     c = l.sentinelle
     for i in range(l.size):
         c = c.next
-        s += str(c.value) + '⥂'
+        s += str(c.value) + "⥂"
     return s[:-1]
 
 
@@ -66,7 +67,7 @@ def ll_lookup(l: LinkedList, item: int) -> Optional[Cell]:
 
 def ll_cell_at(l: LinkedList, i: int) -> Cell:
     if i >= l.size:
-        raise IndexError('Index is too big')
+        raise IndexError("Index is too big")
     c = l.sentinelle
     for j in range(i + 1):
         c = c.next
@@ -78,7 +79,7 @@ def ll_get(l: LinkedList, idx: Cell) -> int:
     while c.next != idx:
         c = c.next
         if c == l.sentinelle:
-            raise IndexError('Cell not in the list')
+            raise IndexError("Cell not in the list")
     return c.next.value
 
 
@@ -87,24 +88,26 @@ def ll_set(l: LinkedList, idx: Cell, item: int) -> LinkedList:
     while c.next != idx:
         c = c.next
         if c == l.sentinelle:
-            raise IndexError('Cell not in the list')
+            raise IndexError("Cell not in the list")
     c.next.value = item
     return l
 
 
-def ll_insert(l: LinkedList, item: int, neighbor: Cell, after: bool = True) -> LinkedList:
+def ll_insert(
+    l: LinkedList, item: int, neighbor: Cell, after: bool = True
+) -> LinkedList:
     c = l.sentinelle
     while c.next != neighbor:
         c = c.next
         if c == l.sentinelle:
-            raise IndexError('Cell not in the list')
-    # On est arrivé à la case juste avant le neighbor
+            raise IndexError("Cell not in the list")
+    # Arrived to the cell before the neighbor
     if not after:
         new = Cell(item, neighbor, c)
         c.next = new
         new.next.prev = new
     else:
-        c = c.next.next  # On va à la case juste après le neighbor
+        c = c.next.next  # Go to the cell after the neighbor
         new = Cell(item, c, neighbor)
         c.prev = new
         new.prev.next = new
@@ -125,7 +128,7 @@ def ll_remove(l: LinkedList, cell: Cell) -> LinkedList:
     while c.next != cell:
         c = c.next
         if c == l.sentinelle:
-            raise IndexError('Cell not in the list')
+            raise IndexError("Cell not in the list")
     c.next = c.next.next
     c.next.prev = c
     l.size -= 1
@@ -133,21 +136,30 @@ def ll_remove(l: LinkedList, cell: Cell) -> LinkedList:
 
 
 def ll_extend(l1: LinkedList, l2: LinkedList) -> LinkedList:
-    c = ll_tail(l1)  # On prend la dernière cellule de l1
-    c.next = ll_head(l2)  # Sa cellule suivante est la première de l2
-    ll_head(l2).prev = c  # La valeur précédente de la première cellule de l2 est maintenant la dernière de l1
+    c = ll_tail(l1)  # Take last cell of l1
+    c.next = ll_head(l2)  # Its last cell is the first of l2
+    ll_head(
+        l2
+    ).prev = c  # The previous value of the first cell of l2 is now the last of l1
 
-    ll_tail(l2).next = l1.sentinelle  # La cellule après la dernière de l2 est maintenant la sentinelle de l1
-    l1.sentinelle.prev = ll_tail(l2)  # La cellule avant la sentinelle de l1 est maintenant la dernière de l2
-    l1.size += l2.size  # On change la taille et hop, c'tout bon :)
+    ll_tail(
+        l2
+    ).next = (
+        l1.sentinelle
+    )  # # The next value of the last cell of l2 is now the sentinel of l1
+    l1.sentinelle.prev = ll_tail(
+        l2
+    )  # The previous value of the sentinel of l1 is now the last cell of l2
+    l1.size += l2.size  # Change the size and it's all good :)
     return l1
 
 
 # Exo 3
 
+
 def ll_reverse(l: LinkedList, k: int) -> LinkedList:
     if k > ll_len(l) or k <= 0:
-        raise IndexError('Index error')
+        raise IndexError("Index error")
 
     for i in range(k // 2):
         ll_swap(l, i, k - i - 1)
@@ -171,7 +183,6 @@ def ll_swap(l: LinkedList, i: int, j: int) -> LinkedList:
     c2 = ll_cell_at(l, j)
 
     if i + 1 != j:  # Si i et j ne sont pas côte à côte
-
         c1.next, c1.prev, c2.next, c2.prev = c2.next, c2.prev, c1.next, c1.prev
 
         before_c1.next = c2
@@ -181,7 +192,6 @@ def ll_swap(l: LinkedList, i: int, j: int) -> LinkedList:
         after_c2.prev = c1
 
     else:
-
         c1.next, c1.prev, c2.next, c2.prev = c2.next, c2, c1, c1.prev
 
         before_c1.next = c2
@@ -198,16 +208,14 @@ def permutations(l: LinkedList) -> Iterator[LinkedList]:
         yield l
         yield ll_reverse(l, 2)
     else:
-        for i in range(ll_len(l)):  # Pour chaque case de la liste
-            v = ll_cell_at(l, i).value  # On récupère sa valeur
-            l = ll_remove(l, ll_cell_at(l, i))  # On retire cette case
+        for i in range(ll_len(l)):
+            v = ll_cell_at(l, i).value
+            l = ll_remove(l, ll_cell_at(l, i))
             j = 0
-            for p in permutations(l):  # pour chaque permutation de la liste moins une case
-                yield ll_insert(l, v, ll_cell_at(l,
-                                                 j))  # On insère la valeur à un endroit pour créer une nouvelle permutation
-                ll_remove(l, ll_cell_at(l, j + 1))  # On la retire après (pour po casser la liste t'as capté)
-            ll_insert(l, v, ll_cell_at(l, i - 1),
-                      False)  # On la remet quand tout est fini sinon la liste rétrécit au fur et à mesure
+            for p in permutations(l):
+                yield ll_insert(l, v, ll_cell_at(l, j))
+                ll_remove(l, ll_cell_at(l, j + 1))
+            ll_insert(l, v, ll_cell_at(l, i - 1), False)
 
 
 def topswops(n: int) -> int:
@@ -227,10 +235,10 @@ def topswops(n: int) -> int:
     return max
 
 
-# Bah j'abandonne ça marche pas permutations et/ou topswops, envie de me couper une couille
+# I give up, permutations and/or topswops don't work
 
 
-def merge_sort(l: list) -> list:  # J'ai pas envie de faire avec des LinkedList
+def merge_sort(l: list) -> list:
     if len(l) > 1:
         m = len(l) // 2
         left = l[:m]
@@ -282,11 +290,11 @@ def d_len(d: Deque) -> int:
 
 
 def d_str(d: Deque) -> str:
-    s = '['
+    s = "["
     for i in range(d_len(d)):
-        s += str(ll_get(d.l, ll_cell_at(d.l, i))) + ','
+        s += str(ll_get(d.l, ll_cell_at(d.l, i))) + ","
     s = s[:-1]
-    s += ']'
+    s += "]"
     return s
 
 
@@ -318,13 +326,13 @@ def d_pop_rear(d: Deque) -> Deque:
     return d
 
 
-def valeur_max_simple(l: list[int], k: int) -> None:
+def simple_max_value(l: list[int], k: int) -> None:
     for i in range(len(l) - k + 1):
-        sub = l[i:i + k]
-        print(f'Maximum de {sub} = {max(sub)}')
+        sub = l[i : i + k]
+        print(f"Maximum of {sub} = {max(sub)}")
 
 
-def valeur_max_deque(l: list[int], k: int) -> None:
+def deque_max_value(l: list[int], k: int) -> None:
     d = d_new()
     for i in range(k):
         if d_is_empty(d):
@@ -333,39 +341,9 @@ def valeur_max_deque(l: list[int], k: int) -> None:
             d_pop_rear(d)
         d_push_rear(d, l[i])
     for i in range(k, len(l)):
-        print(f'Max de {l[i - k:i]} = {d_front(d)}')
-        if d_front(d) not in l[i - k:i]:
+        print(f"Max de {l[i - k:i]} = {d_front(d)}")
+        if d_front(d) not in l[i - k : i]:
             d_pop_front(d)
         while not d_is_empty(d) and d_queue(d) < l[i]:
             d_pop_rear(d)
         d_push_rear(d, l[i])
-
-
-def graham(l: list[tuple]) -> None:
-    pivot = get_pivot(l)
-    l = order_points(l, pivot)
-    print(l)
-
-
-def get_pivot(l: list[tuple]) -> tuple:
-    p = l[0]
-    for point in l[1:]:
-        if point[1] < p[1]:
-            p = point
-        elif point[1] == p[1]:
-            if point[0] > p[0]:
-                p = point
-    return p
-
-
-def order_points(l: list[tuple], pivot: tuple) -> list[tuple]:
-    l.remove(pivot)
-
-    l.insert(0, pivot)
-    return l
-
-
-def determinant(p1: tuple, p2: tuple, pivot: tuple) -> int:
-    return (p1[0] - pivot[0]) * (p2[1] - pivot[1]) - (p1[1] - pivot[1]) * (p2[0] - pivot[0])
-
-# Bah j'ai pas fini Graham :(
