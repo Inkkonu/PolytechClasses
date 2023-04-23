@@ -1,31 +1,31 @@
 from tkinter import *
 
 
-# Exo 1
-def factorielle(n: int) -> int:
+# Ex 1
+def factorial(n: int) -> int:
     if n < 0:
         return None
     elif n <= 1:
         return 1
     else:
-        return factorielle(n - 1) * n
+        return factorial(n - 1) * n
 
 
-# Exo 2
-def pgcd_recursif(a: int, b: int) -> int:
+# Ex 2
+def recursive_gcd(a: int, b: int) -> int:
     if b == 0:
         return a
-    return pgcd_recursif(b, a % b)
+    return recursive_gcd(b, a % b)
 
 
-def pgcd_iteratif(a: int, b: int) -> int:
+def iterative_gcd(a: int, b: int) -> int:
     while b != 0:
         r = a % b
         a, b = b, r
     return a
 
 
-# Exo 3
+# Ex 3
 def fibonacci(n: int, d: dict = dict()) -> int:
     if n == 0:
         return 0
@@ -38,53 +38,57 @@ def fibonacci(n: int, d: dict = dict()) -> int:
     return fibonacci(n - 1) + fibonacci(n - 2)
 
 
-# Exo 4
-def nb_digits(n: int, b: int) -> int:
+# Ex 4
+def nb_digits(n: int, base: int) -> int:
     if n == 0:
         return 0
-    return 1 + nb_digits(n // b, b)
+    return 1 + nb_digits(n // base, base)
 
 
-def convert(n: int, b: int) -> str:
+def convert(n: int, base: int) -> str:
     if n == 0:
-        return ''
-    return convert(n // b, b) + str(n % b)
+        return ""
+    return convert(n // base, base) + str(n % base)
 
 
-def convert_mirror(n: int, b: int) -> str:
+def convert_mirror(n: int, base: int) -> str:
     if n == 0:
-        return ''
-    return str(n % b) + convert(n // b, b)
+        return ""
+    return str(n % base) + convert(n // base, base)
 
 
-# Exo 5
-def robot_cupide(damier: list[list[int]], x: int = 0, y: int = 0) -> int:
-    l1, l2 = len(damier[0]), len(damier)
+# Ex 5
+def greedy_robot(checkerboard: list[list[int]], x: int = 0, y: int = 0) -> int:
+    l1, l2 = len(checkerboard[0]), len(checkerboard)
     if y == l2 - 1 and x == l1 - 1:
-        return damier[x][y]
+        return checkerboard[x][y]
     if y == l2 - 1:
-        return damier[x][y] + robot_cupide(damier, x + 1, y)
+        return checkerboard[x][y] + greedy_robot(checkerboard, x + 1, y)
     if x == l1 - 1:
-        return damier[x][y] + robot_cupide(damier, x, y + 1)
-    return damier[x][y] + max(robot_cupide(damier, x + 1, y), robot_cupide(damier, x, y + 1))
+        return checkerboard[x][y] + greedy_robot(checkerboard, x, y + 1)
+    return checkerboard[x][y] + max(
+        greedy_robot(checkerboard, x + 1, y), greedy_robot(checkerboard, x, y + 1)
+    )
 
 
-# Exo 6
+# Ex 6
 def hanoi(n, source, destination, auxiliary):
     if n == 1:
-        print("Déplacer le disque 1 de", source, "à", destination)
+        print("Move disk 1 from ", source, " to ", destination)
         return
     hanoi(n - 1, source, auxiliary, destination)
-    print("Déplacer le disque", n, "de", source, "à", destination)
+    print("Move disk ", n, " from ", source, " to ", destination)
     hanoi(n - 1, auxiliary, destination, source)
 
 
-# Exo 7
+# Ex 7
 def draw_point(canvas: Canvas, x: int, y: int, color: str = "black") -> None:
     canvas.create_rectangle(x, y, x, y, fill=color, width=0)
 
 
-def draw_segment(canvas: Canvas, xA: int, yA: int, xB: int, yB: int, color: str = 'black') -> None:
+def draw_segment(
+    canvas: Canvas, xA: int, yA: int, xB: int, yB: int, color: str = "black"
+) -> None:
     x = (xA + xB) // 2
     y = (yA + yB) // 2
 
@@ -95,8 +99,10 @@ def draw_segment(canvas: Canvas, xA: int, yA: int, xB: int, yB: int, color: str 
         draw_segment(canvas, x, y, xB, yB, color)
 
 
-# Exo 8
-def sierpinski(canvas: Canvas, n: int, x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) -> None:
+# Ex 8
+def sierpinski(
+    canvas: Canvas, n: int, x1: int, y1: int, x2: int, y2: int, x3: int, y3: int
+) -> None:
     if n <= 1:
         draw_segment(canvas, x1, y1, x2, y2)
         draw_segment(canvas, x2, y2, x3, y3)
@@ -116,7 +122,7 @@ def sierpinski(canvas: Canvas, n: int, x1: int, y1: int, x2: int, y2: int, x3: i
         sierpinski(canvas, n - 1, mx3, my3, mx2, my2, x3, y3)
 
 
-# Exo 9
+# Ex 9
 def permutations(n: int) -> list:
     if n == 1:
         return [[1]]
