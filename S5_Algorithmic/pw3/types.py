@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 import ctypes
 from typing import Optional
-from tp1.TP1 import saisir_entier
-from tp3.TP3 import remplir_tableau
+from pw1.pw1 import type_integer
+from pw3 import fill_array
 
 
 @dataclass
@@ -21,7 +21,7 @@ def al_new(m: int = 10, l: list[int] = None) -> ArrayList:
     tab.array = ArrayType()
     for i in range(current):
         tab.array[i] = l[i]
-        #print(i, tab.array[i])
+        # print(i, tab.array[i])
     return tab
 
 
@@ -34,18 +34,18 @@ def al_is_empty(tab: ArrayList) -> bool:
 
 
 def al_str(tab: ArrayList) -> str:
-    s = '['
+    s = "["
     for i in range(al_len(tab)):
-        s += str(tab.array[i]) + ', '
-    s += ']'
-    return ''.join(s.rsplit(', ', 1)) #Remove last occurence of ', '
+        s += str(tab.array[i]) + ", "
+    s += "]"
+    return "".join(s.rsplit(", ", 1))  # Remove last occurence of ', '
 
 
 def al_get(tab: ArrayList, i: int) -> int:
     try:
         return tab.array[i]
     except IndexError:
-        print('Index non valide')
+        print("Unvalid index")
         return None
 
 
@@ -53,7 +53,7 @@ def al_set(tab: ArrayList, i: int, item: int) -> ArrayList:
     try:
         tab.array[i] = item
     except IndexError:
-        print('Index non valide')
+        print("Unvalid index")
     return tab
 
 
@@ -65,20 +65,20 @@ def al_lookup(tab: ArrayList, item: int) -> Optional[int]:
 
 
 def al_remove(tab: ArrayList, i: int) -> ArrayList:
-    if i > tab.current_size-1:
-        print('Index non valide')
+    if i > tab.current_size - 1:
+        print("Unvalid index")
     else:
         for j in range(i, tab.current_size):
-            tab.array[j] = tab.array[j+1]
+            tab.array[j] = tab.array[j + 1]
         tab.current_size -= 1
     return tab
 
 
 def al_insert(tab: ArrayList, i: int, item: int) -> ArrayList:
     if tab.current_size == tab.max_size:
-        raise OverflowError("Dépassement de capacité")
+        raise OverflowError("Array is full")
     for j in range(tab.current_size, i, -1):
-        tab.array[j] = tab.array[j-1]
+        tab.array[j] = tab.array[j - 1]
     tab.array[i] = item
     tab.current_size += 1
     return tab
@@ -95,32 +95,32 @@ def al_append(tab: ArrayList, item: int) -> ArrayList:
 def al_extend(tab1: ArrayList, tab2: ArrayList) -> ArrayList:
     n = min(tab1.max_size - tab1.current_size, al_len(tab2))
     for i in range(n):
-        tab1.array[i+tab1.current_size] = tab2.array[i]
+        tab1.array[i + tab1.current_size] = tab2.array[i]
     tab1.current_size += n
     return tab1
 
 
-def al_doublon(tab: ArrayList) -> ArrayList:
-    doublons = []
+def al_duplicate(tab: ArrayList) -> ArrayList:
+    duplicates = []
     for i in range(al_len(tab)):
         j = abs(al_get(tab, i))
         n = al_get(tab, j)
         if n > 0:
             al_set(tab, j, -n)
         else:
-            if j not in doublons:
-                doublons.append(j)
+            if j not in duplicates:
+                duplicates.append(j)
 
     for i in range(al_len(tab)):
         al_set(tab, i, abs(al_get(tab, i)))
 
-    return al_new(l = doublons)
+    return al_new(l=duplicates)
 
 
 def dicho(tab: ArrayList, n: int, min: int = 0, max: int = 100) -> int:
-    if n < 0 or n > 100 or min+1 == max:
+    if n < 0 or n > 100 or min + 1 == max:
         return -1
-    m = (min+max)//2
+    m = (min + max) // 2
     if n == al_get(tab, m):
         return m
     if n < al_get(tab, m):
@@ -130,29 +130,30 @@ def dicho(tab: ArrayList, n: int, min: int = 0, max: int = 100) -> int:
 
 
 def ask_for_dicho() -> None:
-    n = saisir_entier()
+    n = type_integer()
     while n is not None:
-        tab = al_new(100, sorted(remplir_tableau(100)))
+        tab = al_new(100, sorted(fill_array(100)))
         print(al_str(tab))
         i = dicho(tab, n)
-        print(f'Index of {n} in the array : {i} (if -1 then it has not been found in the array)\n')
-        n = saisir_entier()
+        print(
+            f"Index of {n} in the array : {i} (if -1 then it has not been found in the array)\n"
+        )
+        n = type_integer()
 
 
 def quicksort(tab: ArrayList, begin: int = 0, end: int = None) -> None:
     if end is None:
-        end = al_len(tab)-1
+        end = al_len(tab) - 1
     if begin >= end:
         return
     pivot = partition(tab, begin, end)
-    quicksort(tab, begin, pivot-1)
-    quicksort(tab, pivot +1, end)
-
+    quicksort(tab, begin, pivot - 1)
+    quicksort(tab, pivot + 1, end)
 
 
 def partition(tab: ArrayList, begin: int, end: int) -> int:
     pivot = begin
-    for i in range(begin +1, end+1):
+    for i in range(begin + 1, end + 1):
         if tab.array[i] <= tab.array[begin]:
             pivot += 1
             tab.array[i], tab.array[pivot] = tab.array[pivot], tab.array[i]
@@ -179,8 +180,8 @@ def s_is_empty(s: Stack) -> bool:
 
 
 def s_str(s: Stack) -> str:
-    st = ''
-    for i in range(s_size(s)-1, -1, -1):
+    st = ""
+    for i in range(s_size(s) - 1, -1, -1):
         st += str(al_get(s.tab, i)) + "\n"
     return st
 
@@ -192,20 +193,20 @@ def s_push(s: Stack, item: int) -> Stack:
 
 def s_pop(s: Stack) -> Stack:
     if not s_is_empty(s):
-        al_remove(s.tab, s_size(s)-1)
+        al_remove(s.tab, s_size(s) - 1)
     return s
 
 
 def s_top(s: Stack) -> Optional[int]:
     if not s_is_empty(s):
-        return al_get(s.tab, s_size(s)-1)
+        return al_get(s.tab, s_size(s) - 1)
 
 
 def npi() -> int:
     p = s_new(100)
     print("Type your expression\n")
     s = input()
-    while s != '':
+    while s != "":
         try:
             s_push(p, int(s))
         except ValueError:
@@ -244,21 +245,21 @@ def q_is_empty(q: Queue) -> bool:
 
 
 def q_str(q: Queue) -> str:
-    s = 'Queue : '
+    s = "Queue : "
     if q.beginning == -1:
-        s += 'Empty'
+        s += "Empty"
     elif q.beginning <= q.end:
-        for i in range(q.beginning, q.end+1):
-            s += str(al_get(q.tab, i)) + '\t'
+        for i in range(q.beginning, q.end + 1):
+            s += str(al_get(q.tab, i)) + "\t"
     else:
         for i in range(q_size(q)):
-            s += str(al_get(q.tab, i + q.beginning % q.tab.max_size)) + '\t'
+            s += str(al_get(q.tab, i + q.beginning % q.tab.max_size)) + "\t"
     return s
 
 
 def q_enqueue(q: Queue, item: int) -> Queue:
     if q_size(q) == q.tab.max_size:
-        raise OverflowError("Y a po la place")
+        raise OverflowError("Queue is full")
     else:
         if q.beginning != -1 and q.end != -1:
             al_set(q.tab, q.end + 1, item)
@@ -279,7 +280,7 @@ def q_dequeue(q: Queue) -> Queue:
         q.end = -1
         q.beginning = -1
     al_set(q.tab, q.beginning, 0)
-    if q.beginning == q.tab.max_size-1:
+    if q.beginning == q.tab.max_size - 1:
         q.beginning = 0
     else:
         q.beginning += 1
@@ -297,9 +298,10 @@ def bourreau(l: list, k: int) -> int:
     i = k
     while len(l) != 1:
         l.pop(i)
-        i = (i+k) % len(l)
+        i = (i + k) % len(l)
     return l[0]
 
-if __name__ == '__main__':
-    l = [i for i in range(1,20)]
+
+if __name__ == "__main__":
+    l = [i for i in range(1, 20)]
     print(bourreau(l, 3))
