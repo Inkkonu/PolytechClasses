@@ -4,14 +4,14 @@ import matplotlib.pyplot as plt
 
 def analyse(filename) -> dict:
     d = dict()
-    with open(filename, 'r') as infile:
+    with open(filename, "r") as infile:
         data = infile.read()
 
     data = data.lower()
     total = 0
 
     for l in data:
-        if re.match('[a-z]',l):
+        if re.match("[a-z]", l):
             total += 1
             if l not in d.keys():
                 d[l] = 1
@@ -45,19 +45,16 @@ def get_greatest_gaps(d1: dict, d2: dict) -> list:
     l = []
     for k in list(map(chr, range(97, 123))):
         keymax = max(zip(d3.values(), d3.keys()))[1]
-        l.append((keymax,d3[keymax]))
+        l.append((keymax, d3[keymax]))
         del d3[keymax]
     return l[:10]
 
 
-
-
-if __name__ == '__main__':
-    d_prevert = analyse('data_inventaire_prevert.txt')
-    d_force = analyse('la_force.txt')
-    plot_dict(d_prevert, 'Prevert')
-    plot_dict(d_force, 'La force')
+if __name__ == "__main__":
+    d_prevert = analyse("data_inventaire_prevert.txt")
+    d_force = analyse("la_force.txt")
+    plot_dict(d_prevert, "Prevert")
+    plot_dict(d_force, "La force")
     l = get_greatest_gaps(d_prevert, d_force)
     for i in range(10):
-        print(f'{i+1}. {l[i][0]} : {l[i][1]:.02f}%')
-
+        print(f"{i+1}. {l[i][0]} : {l[i][1]:.02f}%")

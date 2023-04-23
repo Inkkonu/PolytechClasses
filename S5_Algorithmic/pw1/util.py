@@ -1,5 +1,4 @@
-def type_integer(invite: str = 'Type an integer :',
-                  escape: str = '') -> int:
+def type_integer(invite: str = "Type an integer :", escape: str = "") -> int:
     try:
         print(invite)
         s = input()
@@ -11,5 +10,5 @@ def type_integer(invite: str = 'Type an integer :',
         return type_integer()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(type_integer())

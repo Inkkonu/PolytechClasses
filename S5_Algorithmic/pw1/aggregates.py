@@ -8,9 +8,9 @@ def compute_aggregates() -> None:
     sum = x
     average = sum / i
 
-    print(f'Minimum number typed : {min}')
-    print(f'Maximum number typed : {max}')
-    print(f'Average of all the numbers typed : {average}')
+    print(f"Minimum number typed : {min}")
+    print(f"Maximum number typed : {max}")
+    print(f"Average of all the numbers typed : {average}")
     x = type_integer()
     while x is not None:
         i += 1
@@ -20,11 +20,11 @@ def compute_aggregates() -> None:
             max = x
         sum += x
         average = sum / i
-        print(f'Minimum number typed : {min}')
-        print(f'Maximum number typed : {max}')
-        print(f'Average of all the numbers typed : {average}')
+        print(f"Minimum number typed : {min}")
+        print(f"Maximum number typed : {max}")
+        print(f"Average of all the numbers typed : {average}")
         x = type_integer()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     compute_aggregates()
