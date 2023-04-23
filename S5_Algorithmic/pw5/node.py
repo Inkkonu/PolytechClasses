@@ -2,7 +2,6 @@ from __future__ import annotations
 
 
 class Node:
-
     def __init__(self, value: int, parent: Node, left: Node, right: Node):
         self.value = value
         self.parent = parent
@@ -14,5 +13,6 @@ class Node:
             return True
         if self.value != other.value:
             return False
-        return self.left.equal(other.left, sentinelle, other_sentinelle) and self.right.equal(other.right, sentinelle,
-                                                                                              other_sentinelle)
+        return self.left.equal(
+            other.left, sentinelle, other_sentinelle
+        ) and self.right.equal(other.right, sentinelle, other_sentinelle)

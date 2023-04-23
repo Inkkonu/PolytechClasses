@@ -1,11 +1,10 @@
 from __future__ import annotations
-from tp5.node import Node
+from node import Node
 from typing import Optional
-from tp4.linked_list import LinkedList
+from pw4.linked_list import LinkedList
 
 
 class BinaryTree:
-
     def __init__(self, nodes: Optional[list[Optional[int]]]):
         self.sentinelle = Node(None, None, None, None)
         self.sentinelle.right = self.sentinelle
@@ -64,7 +63,12 @@ class BinaryTree:
         except TypeError:
             heap_right = True
 
-        return heap_left and heap_right and self.__is_heap(node.left) and self.__is_heap(node.right)
+        return (
+            heap_left
+            and heap_right
+            and self.__is_heap(node.left)
+            and self.__is_heap(node.right)
+        )
 
     def is_heap(self) -> bool:
         return self.__is_heap(self.root())
@@ -79,13 +83,15 @@ class BinaryTree:
             i += 1
         return path_a[i - 1]
 
-    def path(self, x: int, node: Node):  # Honteusement volé sur SO (https://stackoverflow.com/a/49227659/16027155)
+    def path(
+        self, x: int, node: Node
+    ):  # Shamelessly stolen on SO (https://stackoverflow.com/a/49227659/16027155)
         if node == self.sentinelle:
             return []
         if node.value == x:
             return [x]
         res = self.path(x, node.left)
-        if res:  # Si un chemin a été trouvé, aka si la liste est non vide
+        if res:  # If a path has been found
             return [node.value] + res
         res = self.path(x, node.right)
         if res:
@@ -106,7 +112,12 @@ class BinaryTree:
         except TypeError:
             bst_right = True
 
-        return bst_left and bst_right and self.__is_bst(node.left) and self.__is_bst(node.right)
+        return (
+            bst_left
+            and bst_right
+            and self.__is_bst(node.left)
+            and self.__is_bst(node.right)
+        )
 
     def is_bst(self):
         return self.__is_bst(self.root())
@@ -116,12 +127,16 @@ class BinaryTree:
             return LinkedList()
         middle = LinkedList()
         middle.append(node.value)
-        return self.__to_linkedlist(node.left).extend(middle).extend(self.__to_linkedlist(node.right))
+        return (
+            self.__to_linkedlist(node.left)
+            .extend(middle)
+            .extend(self.__to_linkedlist(node.right))
+        )
 
     def to_linkedlist(self):
         return self.__to_linkedlist(self.root())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     t1 = BinaryTree([4, 2, 6])
     print(t1.to_linkedlist())

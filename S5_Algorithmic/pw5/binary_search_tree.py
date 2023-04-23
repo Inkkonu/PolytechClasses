@@ -1,9 +1,8 @@
-from tp5.binary_tree import BinaryTree
-from tp5.node import Node
+from binary_tree import BinaryTree
+from node import Node
 
 
 class BinarySearchTree(BinaryTree):
-
     def __lookup_rec(self, node: Node, key: int):
         if node == self.sentinelle or node.value is None:
             return None
@@ -55,6 +54,6 @@ class BinarySearchTree(BinaryTree):
         return self
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     bst = BinarySearchTree([4, 2, 6])
     print(bst.to_linkedlist())
