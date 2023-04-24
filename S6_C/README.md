@@ -8,4 +8,4 @@ Also, the practice practical works have been slightly reworked to be more readab
 
 Be careful though, most of this code is pretty bad (:
 
-My grade for this class : 12.5/20 (but I coded on Vi for the exam, I should have had more :COPIUM:)
+My grade for this class : 12.5/20 (but I coded on Vi for the exam, I should have had higher :COPIUM:)
