@@ -1,13 +1,14 @@
-package td2;
+package tutorial2;
 
 import java.util.Iterator;
 
 public abstract class List<E extends Comparable<E>> implements Iterable<List<E>> {
     ListIterator<E> iterator;
 
-    abstract int longueur();
+    abstract int length();
 
     abstract boolean contains(E e);
+
 
     abstract List find(E e);
 

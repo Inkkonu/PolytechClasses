@@ -1,6 +1,4 @@
-package td2;
-
-import java.util.Iterator;
+package tutorial2;
 
 public class Cell<E extends Comparable<E>> extends List<E>{
 
@@ -13,8 +11,8 @@ public class Cell<E extends Comparable<E>> extends List<E>{
     }
 
     @Override
-    public int longueur(){
-        return 1 + this.next.longueur();
+    public int length(){
+        return 1 + this.next.length();
     }
 
     @Override

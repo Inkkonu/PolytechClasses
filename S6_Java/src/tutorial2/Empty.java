@@ -1,12 +1,11 @@
-package td2;
+package tutorial2;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Empty<E extends Comparable<E>> extends List<E> {
 
     @Override
-    public int longueur() {
+    public int length() {
         return 0;
     }
 

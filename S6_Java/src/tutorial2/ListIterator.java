@@ -1,4 +1,4 @@
-package td2;
+package tutorial2;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
