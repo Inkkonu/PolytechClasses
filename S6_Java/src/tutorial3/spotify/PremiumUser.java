@@ -1,4 +1,4 @@
-package td3.spotify;
+package tutorial3.spotify;
 
 public class PremiumUser extends User {
 
@@ -22,7 +22,7 @@ public class PremiumUser extends User {
     }
 
     public boolean payMonthlyFees() {
-        return this.creditCard.paye(this.PREMIUM_PRICE);
+        return this.creditCard.pay(this.PREMIUM_PRICE);
     }
 
     @Override

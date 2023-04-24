@@ -1,7 +1,7 @@
-package td3.spotify;
+package tutorial3.spotify;
 
-import td3.spotify.exceptions.Forbidden;
-import td3.spotify.exceptions.SongAlreadyInFavorites;
+import tutorial3.spotify.exceptions.Forbidden;
+import tutorial3.spotify.exceptions.SongAlreadyInFavorites;
 
 import java.util.ArrayList;
 import java.util.List;

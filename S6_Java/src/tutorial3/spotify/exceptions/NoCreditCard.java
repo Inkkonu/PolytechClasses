@@ -1,4 +1,4 @@
-package td3.spotify.exceptions;
+package tutorial3.spotify.exceptions;
 
 public class NoCreditCard extends Exception {
 }

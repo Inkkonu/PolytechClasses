@@ -1,6 +1,6 @@
-package td3.spotify;
+package tutorial3.spotify;
 
-import td3.spotify.exceptions.Forbidden;
+import tutorial3.spotify.exceptions.Forbidden;
 
 import java.util.NoSuchElementException;
 
@@ -52,5 +52,5 @@ public class MusicBank {
     }
 
 } 
-	
-	
+
+

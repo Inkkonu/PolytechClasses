@@ -1,9 +1,9 @@
-package td3.spotify;
+package tutorial3.spotify;
 
-import td3.spotify.exceptions.CreditCardDeclined;
-import td3.spotify.exceptions.Forbidden;
-import td3.spotify.exceptions.MaximumTracksExceeded;
-import td3.spotify.exceptions.NoCreditCard;
+import tutorial3.spotify.exceptions.CreditCardDeclined;
+import tutorial3.spotify.exceptions.MaximumTracksExceeded;
+import tutorial3.spotify.exceptions.NoCreditCard;
+import tutorial3.spotify.exceptions.Forbidden;
 
 import java.util.NoSuchElementException;
 
@@ -23,7 +23,7 @@ public class FreeUser extends User {
         this.tracksListenedToday = 0;
     }
 
-    public FreeUser(PremiumUser user){
+    public FreeUser(PremiumUser user) {
         super(user.userID, user.username, user.favoriteTracks, user.creditCard, user.mail);
     }
 
@@ -55,7 +55,7 @@ public class FreeUser extends User {
             if (this.creditCard == null) {
                 throw new NoCreditCard();
             }
-            if (!this.creditCard.paye(this.PREMIUM_PRICE)) {
+            if (!this.creditCard.pay(this.PREMIUM_PRICE)) {
                 throw new CreditCardDeclined();
             }
             return new PremiumUser(this);
@@ -67,12 +67,12 @@ public class FreeUser extends User {
         return this;
     }
 
-    public User becomeFree(){
+    public User becomeFree() {
         return this;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return super.toString() + ", Membership : Free";
     }
 }

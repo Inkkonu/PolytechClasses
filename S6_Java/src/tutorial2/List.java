@@ -24,10 +24,9 @@ public abstract class List<E extends Comparable<E>> implements Iterable<List<E>>
 
     public int count(E e) {
         if (this.getElem() != null) {
-            if(this.getElem().equals(e)){
+            if (this.getElem().equals(e)) {
                 return 1 + this.getNext().count(e);
-            }
-            else{
+            } else {
                 return this.getNext().count(e);
             }
         } else {

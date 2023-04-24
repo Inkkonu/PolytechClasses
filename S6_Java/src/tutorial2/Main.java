@@ -8,7 +8,7 @@ public class Main {
         System.out.println("Max : " + l.max());
         System.out.println("Loic appears " + l.count("Loic") + " time(s)");
         ListIterator<String> listIter = new ListIterator<>(l);
-        while(listIter.hasNext()){
+        while (listIter.hasNext()) {
             System.out.print(l);
             l = listIter.next();
         }

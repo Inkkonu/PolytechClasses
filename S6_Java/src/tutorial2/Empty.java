@@ -30,12 +30,12 @@ public class Empty<E extends Comparable<E>> extends List<E> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Empty";
     }
 
     @Override
-    public E getElem(){
+    public E getElem() {
         return null;
     }
 }

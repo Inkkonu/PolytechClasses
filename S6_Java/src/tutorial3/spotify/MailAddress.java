@@ -1,6 +1,6 @@
-package td3.spotify;
+package tutorial3.spotify;
 
-import td3.spotify.exceptions.InvalidMailAddressFormat;
+import tutorial3.spotify.exceptions.InvalidMailAddressFormat;
 
 import java.util.Arrays;
 
@@ -27,11 +27,11 @@ public class MailAddress {
             throw new InvalidMailAddressFormat();
         }
         this.prefix = "";
-        for(int i = 0 ; i < parts.length-1 ; i++){
+        for (int i = 0; i < parts.length - 1; i++) {
             this.prefix += parts[i] + ".";
         }
-        this.prefix = this.prefix.substring(0, this.prefix.length()-1);
-        this.domain = parts[parts.length-1];
+        this.prefix = this.prefix.substring(0, this.prefix.length() - 1);
+        this.domain = parts[parts.length - 1];
     }
 
     @Override
