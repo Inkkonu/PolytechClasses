@@ -10,21 +10,22 @@
 #define ALGO(name) {#name, name},
 #define ALGOTERM() {NULL, NULL},
 
-struct SAlgo{
+struct SAlgo
+{
   char *Name;
-  void (*Function) (int[], int, int (*fnCmp)(int, int));
+  void (*Function)(int[], int, int (*fnCmp)(int, int));
 };
 
-struct SAlgo Algos[]={
-  ALGO(bubbleSort)
-  ALGO(quickSort)
-  ALGOTERM()
-};
+struct SAlgo Algos[] = {
+    ALGO(bubbleSort)
+        ALGO(quickSort)
+            ALGOTERM()};
 
-
-void sortingTest(int length){
+void sortingTest(int length)
+{
   clock_t start_t, end_t, total_t;
-  for(int i = 0 ; i < length ; i++){
+  for (int i = 0; i < length; i++)
+  {
     int *array = random_array(ARRAYLENGTH);
     start_t = clock();
     Algos[i].Function(array, ARRAYLENGTH, compareIncreasing);
@@ -34,7 +35,8 @@ void sortingTest(int length){
   }
 }
 
-int main() {
+int main()
+{
   sortingTest(2);
   return 0;
 }

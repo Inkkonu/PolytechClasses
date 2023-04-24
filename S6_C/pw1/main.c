@@ -6,14 +6,18 @@
 
 #define TAGLENGTH 100
 
-enum States { State0,
-              State1,
-              State2,
-              State3,
-              State4,
-              State5 };
+enum States
+{
+  State0,
+  State1,
+  State2,
+  State3,
+  State4,
+  State5
+};
 
-int is_correct_sgml(char fileName[]) {
+int is_correct_sgml(char fileName[])
+{
   FILE *pFile;
   char c;
   Stack stack;
@@ -25,13 +29,17 @@ int is_correct_sgml(char fileName[]) {
 
   stackInit(&stack);
 
-  if (pFile = fopen(fileName, "rt")) {
-    while (!feof(pFile) && correct) {
+  if (pFile = fopen(fileName, "rt"))
+  {
+    while (!feof(pFile) && correct)
+    {
       c = fgetc(pFile);
 
-      switch (curState) {   //Picture of the automaton in the archive to help you understand
+      switch (curState)
+      { // Picture of the automaton in the archive to help you understand
       case State0:
-        if (c == '<') {
+        if (c == '<')
+        {
           curState = State1;
           i = 0;
           memset(tagName, 0, TAGLENGTH * sizeof(char)); // Resets the array
@@ -40,32 +48,47 @@ int is_correct_sgml(char fileName[]) {
         break;
 
       case State1:
-        if (isalpha(c)) {
+        if (isalpha(c))
+        {
           tagName[i] = c;
           i++;
-        } else if (c == ' ') {
+        }
+        else if (c == ' ')
+        {
           curState = State2;
-        } else if (c == '>') {
+        }
+        else if (c == '>')
+        {
           curState = State3;
         }
         break;
 
       case State2:
-        if (c == '>') {
+        if (c == '>')
+        {
           curState = State3;
-        } else {
+        }
+        else
+        {
           // Stay here and ignore everything
         }
         break;
 
       case State3:
-        if (c == '<') {
-          if (!closing) {
+        if (c == '<')
+        {
+          if (!closing)
+          {
             stackPush(&stack, tagName);
-          } else {
-            if (strcmp(stackTop(&stack), tagName) == 0) {
+          }
+          else
+          {
+            if (strcmp(stackTop(&stack), tagName) == 0)
+            {
               stackPop(&stack);
-            } else {
+            }
+            else
+            {
               correct = false;
             }
           }
@@ -73,16 +96,21 @@ int is_correct_sgml(char fileName[]) {
           memset(tagName, 0, TAGLENGTH * sizeof(char)); // Resets the array
           closing = false;
           curState = State4;
-        } else {
+        }
+        else
+        {
           // Do nothing
         }
         break;
 
       case State4:
-        if (c == '/') {
+        if (c == '/')
+        {
           closing = true;
           curState = State5;
-        } else {
+        }
+        else
+        {
           tagName[i] = c;
           i++;
           curState = State1;
@@ -90,9 +118,12 @@ int is_correct_sgml(char fileName[]) {
         break;
 
       case State5:
-        if (c == '>') {
+        if (c == '>')
+        {
           curState = State3;
-        } else if (isalpha(c)) {
+        }
+        else if (isalpha(c))
+        {
           tagName[i] = c;
           i++;
         }
@@ -101,15 +132,19 @@ int is_correct_sgml(char fileName[]) {
     }
     fclose(pFile);
     return correct;
-  } else {
+  }
+  else
+  {
     printf("Couldn't open the file\n");
     return -1;
   }
 }
 
-int main() {
+int main()
+{
   int i = is_correct_sgml("fichier.html");
-  if(i != -1){
+  if (i != -1)
+  {
     printf("%sorrect SMGL file\n", i ? "C" : "Inc");
   }
   return 0;

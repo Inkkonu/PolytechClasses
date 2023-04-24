@@ -1,7 +1,8 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-struct _Stack {
+struct _Stack
+{
   char array[100][100];
   int index;
 };

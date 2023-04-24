@@ -4,6 +4,6 @@
 #include <stdio.h>
 #include "utils.h"
 
-void bubbleSort(int array[], int length, int(*f)(int, int));
+void bubbleSort(int array[], int length, int (*f)(int, int));
 
 #endif
