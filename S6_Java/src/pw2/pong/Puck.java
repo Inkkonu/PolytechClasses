@@ -1,8 +1,8 @@
-package tp2.pong;
+package pw2.pong;
 
 import java.awt.Rectangle;
 
-public class Palet implements MovingObject {
+public class Puck implements MovingObject {
 
     int x;
     int y;
@@ -10,33 +10,33 @@ public class Palet implements MovingObject {
     int vx;
     int vy;
 
-    int marge;
+    int margin;
 
-    Palet() {
+    Puck() {
         x = 30;
         y = 30;
         vx = 2;
         vy = 2;
-        marge = 15;
+        margin = 15;
     }
 
 
-    boolean sortie_x(int px) {
-        return (px < (0 + marge)) || (px > (320 - marge));
+    boolean exit_x(int px) {
+        return (px < (margin)) || (px > (320 - margin));
     }
 
-    boolean sortie_y(int py) {
-        return (py < (0 + marge)) || (py > (200 - marge));
+    boolean exit_y(int py) {
+        return (py < (margin)) || (py > (200 - margin));
     }
 
-    public void deplace() {
-        if (sortie_x(x + vx)) {
+    public void move() {
+        if (exit_x(x + vx)) {
             vx = (-1) * vx;
         } else {
             x = x + vx;
         }
 
-        if (sortie_y(y + vy)) {
+        if (exit_y(y + vy)) {
             vy = (-1) * vy;
         } else {
             y = y + vy;

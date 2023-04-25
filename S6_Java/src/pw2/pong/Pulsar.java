@@ -1,21 +1,21 @@
-package tp2.pong;
+package pw2.pong;
 
 import java.awt.*;
 import java.lang.Math;
 
-public class Pulsar extends Palet {
+public class Pulsar extends Puck {
 
-    private int taille;
+    private int size;
 
     public Pulsar() {
         super();
-        taille = 0;
+        size = 0;
     }
 
     @Override
     public Rectangle getRect() {
         Rectangle rect = new Rectangle(x, y, (int) (20 * Math.random()), (int) (20 * Math.random()));
-        taille++;
+        size++;
         return rect;
     }
 }
