@@ -1,8 +1,8 @@
-package td5;
+package tutorial5;
 
 import java.awt.Graphics2D;
 
-public class Rectangle implements Figure{
+public class Rectangle implements Figure {
 
     protected int x;
     protected int y;

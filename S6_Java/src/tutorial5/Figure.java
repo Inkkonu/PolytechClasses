@@ -1,4 +1,4 @@
-package td5;
+package tutorial5;
 
 import java.awt.Graphics2D;
 
