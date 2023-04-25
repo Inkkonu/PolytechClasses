@@ -1,20 +1,20 @@
-package tp7;
+package pw7;
 
-public class ClassToClone implements Cloneable{
+public class ClassToClone implements Cloneable {
 
     protected int i;
 
-    public ClassToClone(int i){
+    public ClassToClone(int i) {
         this.i = i;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.valueOf(this.i);
     }
 
     @Override
-    public ClassToClone clone(){
+    public ClassToClone clone() {
         return new ClassToClone(this.i);
     }
 
@@ -24,7 +24,7 @@ public class ClassToClone implements Cloneable{
         super.finalize();
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         ClassToClone c = new ClassToClone(3);
         System.out.println(c);
         System.out.println(c.getClass().getName());

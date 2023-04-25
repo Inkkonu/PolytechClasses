@@ -1,4 +1,4 @@
-package tp7;
+package pw7;
 
 public class TestString {
 
