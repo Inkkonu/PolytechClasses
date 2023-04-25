@@ -1,4 +1,4 @@
-package tp1.ex1;
+package pw1.ex1;
 
 class Message {
     static void hello() {

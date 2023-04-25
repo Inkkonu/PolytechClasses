@@ -1,4 +1,4 @@
-package tp1.display2d;
+package pw1.display2d;
 
 import java.util.Random;
 
@@ -11,39 +11,38 @@ public class TextSimulator implements IDisplay {
     Random random = new Random();
 
 
-    public int nbLignes() {
+    public int nbLines() {
         return nbl;
     }
 
-    public int nbColonnes() {
+    public int nbColumns() {
         return nbc;
     }
 
-    Intensite[][] tab;
+    Intensity[][] tab;
 
     public TextSimulator(int l, int c) {
         nbl = l;
         nbc = c;
-        tab = new Intensite[l][c];
+        tab = new Intensity[l][c];
         for (int i = 0; i < nbl; i++) {
             for (int j = 0; j < nbc; j++) {
-                tab[i][j] = new Intensite(random.nextInt(4));
+                tab[i][j] = new Intensity(random.nextInt(4));
             }
         }
         display();
     }
 
-    public void put(IPoint p, Intensite i) {
+    public void put(IPoint p, Intensity i) {
         tab[p.getX()][p.getY()] = i;
         display();
     }
 
     void display() {
-        /* je n'affiche pas au fur et à mesure car sinon on a un flush à chaque ligne. */
         StringBuilder s = new StringBuilder(2 * nbl * (nbc + 1));
 
         for (int n = 0; n < nbl; n++) {
-            for (Intensite i : tab[n]) {
+            for (Intensity i : tab[n]) {
                 switch (i.get()) {
                     case 0:
                         s.append(' ');

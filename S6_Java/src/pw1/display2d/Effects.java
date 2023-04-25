@@ -1,4 +1,4 @@
-package tp1.display2d;
+package pw1.display2d;
 
 class Effects {
 
@@ -9,12 +9,12 @@ class Effects {
 
     public Effects(IDisplay d) {
         theDisplay = d;
-        x = d.nbLignes();
-        y = d.nbColonnes();
+        x = d.nbLines();
+        y = d.nbColumns();
     }
 
 
-    public void init(Intensite v) {
+    public void init(Intensity v) {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 theDisplay.put(new Point(i, j), v);
@@ -24,8 +24,8 @@ class Effects {
 
     public void circle(int rayon) {
         int r2 = rayon * rayon;
-        Intensite min = new Intensite(0);
-        Intensite max = new Intensite(3);
+        Intensity min = new Intensity(0);
+        Intensity max = new Intensity(3);
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {

@@ -1,4 +1,4 @@
-package tp1.buffer;
+package pw1.buffer;
 
 public class Buffer32 {
 

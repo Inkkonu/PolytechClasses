@@ -1,6 +1,6 @@
-package tp1.buffer;
+package pw1.buffer;
 
-/* Types primitifs : https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html */
+/* Primitive types : https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html */
 
 
 public interface IMemoire {

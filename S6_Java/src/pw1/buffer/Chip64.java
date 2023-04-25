@@ -1,4 +1,4 @@
-package tp1.buffer;
+package pw1.buffer;
 
 /**
  * This class simulates a 64 bytes memory chip. Fails on
@@ -6,7 +6,7 @@ package tp1.buffer;
  */
 
 
-public class Puce64 implements IMemoire {
+public class Chip64 implements IMemoire {
 
 
     protected byte[] t = new byte[64];

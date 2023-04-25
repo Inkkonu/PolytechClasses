@@ -1,4 +1,4 @@
-package tp1.buffer;
+package pw1.buffer;
 
 public class TestBuffer {
 
@@ -21,7 +21,7 @@ public class TestBuffer {
     private static boolean testsPuce64() {
         boolean allGood = true;
         try {
-            BufferGen buffer = new BufferGen(new Puce64());
+            BufferGen buffer = new BufferGen(new Chip64());
             buffer.push(Byte.valueOf("4"));
             buffer.pop();
             buffer.push(Byte.valueOf("5"));

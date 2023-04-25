@@ -1,4 +1,4 @@
-package tp1.buffer;
+package pw1.buffer;
 
 /**
  * This class simulates a 32 bytes memory chip. Read and

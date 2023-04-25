@@ -1,10 +1,10 @@
-package tp1.display2d;
+package pw1.display2d;
 
-class Intensite {
+class Intensity {
 
     int v;
 
-    public Intensite(int i) {
+    public Intensity(int i) {
         if (i < 0 || i > 3) {
             throw new IndexOutOfBoundsException();
         } else {
