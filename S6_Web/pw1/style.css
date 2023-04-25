@@ -1,0 +1,217 @@
+/* By Killian Blain */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 1200px;
+  margin: auto;
+}
+
+main {
+  background-color: #f6f6f6;
+  min-width: 480px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+}
+
+main h2 {
+  font-size: 100%;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #dfdfdf;
+  margin: 0 1em 15px;
+}
+
+main p {
+  font-size: 80%;
+  text-align: justify;
+  hyphens: auto;
+  line-height: 1.5em;
+}
+
+div {
+  padding-right: 10px;
+}
+
+/* header */
+
+header {
+  margin: 0 auto;
+  background-color: black;
+  color: white;
+  position: relative;
+  height: 70px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+header li {
+  display: inline-block;
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+header img {
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+header input {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: black;
+  color: white;
+}
+
+header h1 {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-image: url("images/poly-music.png");
+  background-repeat: no-repeat;
+  padding-bottom: 7px;
+}
+
+header ul:nth-child(2) {
+  text-align: right;
+  font-size: 80%;
+  font-weight: normal;
+}
+
+/* section Pop/Rock */
+
+/* Pop/Rock Artists Highlights */
+
+#popRockArtistsHighlights {
+  background-color: white;
+  border-color: #dfdfdf;
+  border-style: solid;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+#popRockArtistsHighlights p {
+  display: none;
+}
+
+#popRockArtistsHighlights article {
+  display: inline-block;
+}
+
+#popRockArtistsHighlights img {
+  width: 250px;
+  height: 250px;
+}
+
+#popRockArtistsHighlights img:hover {
+  opacity: 0.1;
+  transition: opacity 1s;
+}
+
+#popRockArtistsHighlights a {
+  text-decoration: none;
+  color: white;
+  padding-left: 10px;
+}
+
+#popRockArtistsHighlights article {
+  position: relative;
+}
+
+#popRockArtistsHighlights h3 {
+  color: white;
+  background-color: black;
+  text-align: center;
+  position: absolute;
+  bottom: 4px;
+}
+/* section Pop/Rock Song Highlights */
+
+#popRockSongHighlights {
+  background-color: white;
+  border-color: #dfdfdf;
+  border-style: solid;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+#popRockSongHighlights > a {
+  text-decoration: none;
+  font-size: 80%;
+  color: dodgerblue;
+  font-weight: bold;
+  text-align: right;
+}
+
+#popRockSongHighlights td a {
+  color: black;
+  text-decoration: none;
+}
+
+#popRockSongHighlights table {
+  table-layout: auto;
+  width: 1000px;
+}
+
+#popRockSongHighlights table tr {
+  border-bottom: 10px solid #dfdfdf;
+  line-height: 1.5;
+}
+
+/* aside Recent Pop/Rock Releases */
+
+#recentPopRockReleases {
+  width: 240px;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border-color: #dfdfdf;
+  border-style: solid;
+  margin-top: 10px;
+  padding: 10px 30px;
+}
+
+#recentPopRockReleases cite {
+  text-align: right;
+}
+
+/* footer */
+
+footer {
+  margin: 0 auto;
+  position: relative;
+  background-color: black;
+  color: white;
+}
+
+footer li {
+  display: inline-block;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer li:after {
+  content: " | ";
+}
+
+footer li:last-child:after {
+  content: "";
+}
+
+footer p {
+  font-size: 80%;
+  line-height: 2;
+}

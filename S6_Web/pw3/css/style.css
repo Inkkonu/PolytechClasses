@@ -1,0 +1,100 @@
+/*
+ * By Killian Blain :)
+ */
+
+#container {
+  width: 980px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  padding: 1em 0;
+  margin: 0;
+  background: black;
+  color: white;
+}
+
+#main {
+  position: relative;
+}
+
+#main h2 {
+  margin-bottom: 1em;
+}
+
+#main nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#main p {
+  text-align: justify;
+}
+
+#main ul {
+  padding: 0;
+}
+
+#main form,
+#main nav > p {
+  display: inline-block;
+}
+
+#albums {
+  visibility: hidden;
+  width: 500px;
+  background-color: white;
+  position: absolute;
+  text-align: center;
+  border: solid 1px black;
+  opacity: 0;
+  padding-bottom: 0.5em;
+}
+
+#albums table {
+  width: 95%;
+}
+
+#albums img {
+  height: 50px;
+}
+
+footer {
+  text-align: center;
+  padding: 0.5em 0;
+  margin: 0;
+  background: black;
+  color: white;
+}
+
+#topAlbums {
+  padding: 0;
+  display: flex;
+  list-style: none;
+}
+
+#topAlbums li {
+  padding: 10px;
+  margin: 20px 35px 20px 0;
+
+  display: flex;
+
+  width: 200px;
+  align-items: center;
+  flex-direction: column;
+
+  border: 1px solid black;
+}
+
+#topAlbums li img {
+  max-width: 95%;
+  max-height: 200px;
+}
+
+#topAlbums li a {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
