@@ -1,4 +1,4 @@
-<!-- Killian BLAIN -->
+< !--Killian BLAIN-- >
 
 var margin = {
     top: 30, right: 10, bottom: 10, left: 0

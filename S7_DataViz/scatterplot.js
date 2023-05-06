@@ -1,4 +1,4 @@
-<!-- Killian BLAIN -->
+< !--Killian BLAIN-- >
 
 const sizeScatter = 100;
 const paddingScatter = 20;
@@ -150,6 +150,6 @@ function brushEnd() {
 
 function cross(a, b) {
     let c = [], n = a.length, m = b.length, i, j;
-    for (i = -1; ++i < n;) for (j = -1; ++j < m;) c.push({x: a[i], i: i, y: b[j], j: j});
+    for (i = -1; ++i < n;) for (j = -1; ++j < m;) c.push({ x: a[i], i: i, y: b[j], j: j });
     return c;
 }
