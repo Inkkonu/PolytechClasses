@@ -4,4 +4,4 @@ Here you can find my work for the class of Functional Programming from the 8th s
 
 I don't think I've done much in this class though.
 
-My grade for this class : NA/20
+My grade for this class : 18.125/20
